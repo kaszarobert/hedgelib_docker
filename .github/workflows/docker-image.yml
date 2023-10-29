@@ -7,27 +7,26 @@ on:
     branches: [ "main" ]
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    # Use buildx, which is faster and can optimize the build steps
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1
-      with:
-        install: true
-    - name: docker login
-      env:
-        DOCKER_USER: ${{secrets.DOCKER_USER}}
-        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-      run: |
-        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 
-    - name: Build the Docker image
-      run: docker build --load -t kaszarobert/hedgelib:latest -t kaszarobert/hedgelib:$GITHUB_SHA --target deploy .
-      
-    - name: Push Docker image tags to Docker Hub
-      run: |
-        docker push kaszarobert/hedgelib:latest
-        docker push kaszarobert/hedgelib:$GITHUB_SHA
+      -
+        name: Checkout
+        uses: actions/checkout@v4
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      -
+        name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/hedgelib:latest
