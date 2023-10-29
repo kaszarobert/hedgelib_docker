@@ -20,7 +20,9 @@ jobs:
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag kaszarobert/hedgelib:$(date +%s) --tag kaszarobert/hedgelib:latest
+      run: docker build --load -t kaszarobert/hedgelib:latest -t kaszarobert/hedgelib:$GITHUB_SHA --target deploy .
       
-    - name: Docker Push
-      run: docker push --all-tags
+    - name: Push Docker image tags to Docker Hub
+      run: |
+        docker push kaszarobert/hedgelib:latest
+        docker push kaszarobert/hedgelib:$GITHUB_SHA
