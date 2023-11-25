@@ -1,6 +1,6 @@
 # HedgeLib Docker
 
-A simple Docker image that contains [HedgeLib](https://github.com/Radfordhound/HedgeLib) and [Puyo Text Editor](https://github.com/nickworonekin/puyo-text-editor) for working with Sonic game based PAC (and other) files.
+A simple Docker image that builds [HedgeLib](https://github.com/Radfordhound/HedgeLib) and [Puyo Text Editor](https://github.com/nickworonekin/puyo-text-editor) from source for working with Sonic game based PAC (and other) files. The docker build takes about 270-300s.
 
 Usage example:
 
