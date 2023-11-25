@@ -1,6 +1,6 @@
 # HedgeLib Docker
 
-![github actions workflow](https://github.com/github/docs/actions/workflows/docker-image.yml/badge.svg)
+![github actions workflow](https://github.com/kaszarobert/hedgelib_docker/actions/workflows/docker-image.yml/badge.svg)
 
 A simple Docker image that builds [HedgeLib](https://github.com/Radfordhound/HedgeLib) and [Puyo Text Editor](https://github.com/nickworonekin/puyo-text-editor) from source for working with Sonic game based PAC (and other) files. The docker build takes about 270-300s.
 
