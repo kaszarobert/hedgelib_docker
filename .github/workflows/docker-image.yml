@@ -28,6 +28,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: |
-            ${{ secrets.DOCKER_USER }}/hedgelib:${{ github.ref }}
-            ${{ secrets.DOCKER_USER }}/hedgelib:latest
+          tags: ${{ secrets.DOCKER_USER }}/hedgelib:${{ steps.meta.outputs.tags }}
+            
