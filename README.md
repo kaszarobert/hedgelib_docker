@@ -7,9 +7,9 @@ A simple Docker image that builds [HedgeLib](https://github.com/Radfordhound/Hed
 Usage example:
 
 ```
-docker container run -v /home/pc/sonic:/app --user $(id -u):$(id -g) kaszarobert/hedgelib HedgeArcPack /app/text/text_common_en.pac /app/text_cnvrs2/text_common_en
+docker container run -v $(pwd):/app --user $(id -u):$(id -g) kaszarobert/hedgelib HedgeArcPack /app/text/text_common_en.pac /app/text_cnvrs2/text_common_en
 ```
 
 ```
-docker container run -v /home/pc/sonic:/app --user $(id -u):$(id -g) kaszarobert/hedgelib PuyoTextEditor /app/text_cnvrs2/text_common_en/ui_Menu.cnvrs-text -o /app/text_xml/text_common_en/ui_Menu.xml
+docker container run -v $(pwd):/app --user $(id -u):$(id -g) kaszarobert/hedgelib PuyoTextEditor /app/text_cnvrs2/text_common_en/ui_Menu.cnvrs-text -o /app/text_xml/text_common_en/ui_Menu.xml
 ```
