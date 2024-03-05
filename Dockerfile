@@ -7,7 +7,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
 
 # To skip build cache for new versions of external repos we jump to a specified commit.
-ARG HEDGELIB_REPO_COMMITID=207b99f
+ARG HEDGELIB_REPO_COMMITID=f0ded0a
 ARG HEDGELIB_REPO_BRANCH=HedgeLib++
 
 RUN apt-get update -y \
