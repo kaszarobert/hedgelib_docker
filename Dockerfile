@@ -1,7 +1,7 @@
 # docker build -t kaszarobert/hedgelib:newtagname . --progress=plain
 
 # 1st build HedgeLib from source.
-FROM ubuntu:24.04
+FROM ubuntu:20.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
@@ -17,7 +17,11 @@ RUN apt-get update -y \
     lsb-release \
     gnupg
 
-RUN wget -qO - https://gist.githubusercontent.com/Radfordhound/6e6ce00535d14ae87d606ece93f1e336/raw/9796f644bdedaa174ed580a8aa6874ab82853170/install-lunarg-ubuntu-repo.sh | sh
+# TODO: Ubuntu 20 is no longer supported by Lunarg Vulkan, see https://vulkan.lunarg.com/sdk/home under Linux > Ubuntu packages. But updating to newer Ubuntu seemingly builds successfully but when you try to run commands, it results to "HedgeArcPack: /lib/x86_64-linux-gnu/libc.so.6: version GLIBC_2.38' not found (required by HedgeArcPack)". So instead we're forcing to build with the last supported older version until we figure out how to build the app with the latest Ubuntu.
+#RUN wget -qO - https://gist.githubusercontent.com/Radfordhound/6e6ce00535d14ae87d606ece93f1e336/raw/9796f644bdedaa174ed580a8aa6874ab82853170/install-lunarg-ubuntu-repo.sh | sh
+RUN wget -qO - https://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo apt-key add -
+RUN sudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-1.3.283-focal.list https://packages.lunarg.com/vulkan/1.3.283/lunarg-vulkan-1.3.283-focal.list
+
 
 RUN apt-get update -y \
     && apt-get install -yq \
