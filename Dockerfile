@@ -1,13 +1,13 @@
 # docker build -t kaszarobert/hedgelib:newtagname . --progress=plain
 
 # 1st build HedgeLib from source.
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
 
 # To skip build cache for new versions of external repos we jump to a specified commit.
-ARG HEDGELIB_REPO_COMMITID=f0ded0a
+ARG HEDGELIB_REPO_COMMITID=ecebfa0
 ARG HEDGELIB_REPO_BRANCH=HedgeLib++
 
 RUN apt-get update -y \
