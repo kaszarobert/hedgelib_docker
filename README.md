@@ -1,4 +1,4 @@
-# HedgeLib Docker
+# HedgeLib and Puyo Text Editor Docker image
 
 ![github actions workflow](https://github.com/kaszarobert/hedgelib_docker/actions/workflows/docker-image.yml/badge.svg)
 
